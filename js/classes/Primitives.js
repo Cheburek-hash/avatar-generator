@@ -1,30 +1,48 @@
-'use strict';
+
+
+
 
 class Primitives {
+    static bg_color;
+    static body_color;
     static bg(type){
         switch (type) {
             case 'transparent':
-                core.ctx.clearRect(0,0,core.w, core.h)
+                core.ctx.clearRect(0,0,core.cvs.width, core.cvs.height)
                 break;
             case 'black':
                 core.ctx.fillStyle = Palette.black();
-                core.ctx.fillRect(0,0,core.w, core.h);
+                core.ctx.fillRect(0,0,core.cvs.width, core.cvs.height);
                 break;
             case 'white':
-                core.ctx.fillStyle = Palette.white()
-                core.ctx.fillRect(0,0,core.w, core.h);
+                core.ctx.fillStyle = Palette.white();
+                core.ctx.fillRect(0,0,core.cvs.width, core.cvs.height);
                 break;
             case 'random':
-                core.ctx.fillStyle = Palette.random();
-                core.ctx.fillRect(0,0,core.w, core.h);
+                if (!this.bg_color){
+                    this.bg_color = Palette.random();
+                    core.ctx.fillStyle = this.bg_color;
+                    core.ctx.fillRect(0,0,core.cvs.width, core.cvs.height);
+                }else{
+                    core.ctx.fillStyle = this.bg_color;
+                    core.ctx.fillRect(0,0,core.cvs.width, core.cvs.height);
+                }
                 break;
             case 'random_gradient':
-                core.ctx.fillStyle = Palette.randomGradient();
-                core.ctx.fillRect(0,0,core.w, core.h);
+                if (!this.bg_color){
+                    this.bg_color = Palette.randomGradient();
+                    core.ctx.fillStyle = this.bg_color;
+                    core.ctx.fillRect(0,0,core.cvs.width, core.cvs.height);
+                }else{
+                    core.ctx.fillStyle = this.bg_color;
+                    core.ctx.fillRect(0,0,core.cvs.width, core.cvs.height);
+            }
+
                 break;
         }
     }
     static body(color){
+
         const userW = 309;
         const userH = 258;
         const scale_coefficient = 1.5;
@@ -37,18 +55,28 @@ class Primitives {
                 core.ctx.fillStyle = Palette.white()
                 break;
             case 'random':
-                core.ctx.fillStyle = Palette.random();
+                if (!this.body_color){
+                    this.body_color = Palette.random();
+                    core.ctx.fillStyle = this.body_color;
+                }else{
+                    core.ctx.fillStyle = this.body_color;
+                }
                 break;
             case 'random_gradient':
-                core.ctx.fillStyle = Palette.randomGradient();
+                if (!this.body_color){
+                    this.body_color = Palette.randomGradient();
+                    core.ctx.fillStyle = this.body_color;
+                }else{
+                    core.ctx.fillStyle = this.body_color;
+                }
                 break;
             default:
                 core.ctx.fillStyle = Palette.black();
                 break;
         }
+            core.ctx.scale(scale_coefficient, scale_coefficient)
+            core.ctx.translate((core.cvs.width / scale_coefficient * 0.5 - (userW/2)),(core.cvs.height / scale_coefficient * 0.5 - (userH/2)));
+            core.ctx.fill(user);
 
-         core.ctx.scale(scale_coefficient, scale_coefficient)
-         core.ctx.translate(core.w / scale_coefficient * 0.5 - (userW/2),core.h / scale_coefficient * 0.5 - (userH/2))
-         core.ctx.fill(user);
     }
 }

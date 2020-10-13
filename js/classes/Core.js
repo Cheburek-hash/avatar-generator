@@ -13,13 +13,30 @@ class Core {
         this.cvs.width = this.w;
         this.cvs.height = this.h;
         this.ctx = this.cvs.getContext('2d');
-        //this.ctx.globalCompositeOperation='destination-over';
         document.body.appendChild(this.cvs);
+        delete this.w && delete this.h;
     }
     generate(){
-        this.createField();
         Primitives.bg(this.data.background);
         Primitives.body(this.data.body);
-        console.log('ok')
+    }
+    regenerate(type){
+        switch (type) {
+            case 'bg':
+                delete Primitives.bg_color;
+                core.generate();
+                break;
+            case 'body':
+                delete Primitives.body_color;
+                core.generate();
+                break;
+        }
+    }
+    save() {
+        const link = document.createElement('a');
+        link.setAttribute('href', this.cvs.toDataURL('image/png'));
+        link.setAttribute('download', 'image.png');
+        link.click();
+        return false;
     }
 }

@@ -13,10 +13,10 @@
     <div class="modal">
         <div class="settings">
             <form onsubmit="return false" oninput="out_x.value = x.valueAsNumber; out_y.value = y.valueAsNumber">
-                <label for="x">width</label><input name="x" id="x" type="range" min="50" max="500" value="500" step="10">
-                <output for="x" name="out_x">100</output> &nbsp;
-                <label for="y">height</label><input name="y" id="y" type="range" min="50" max="500" value="500" step="10">
-                <output for="y" name="out_y">100</output>
+                <label for="x">width</label><input name="x" id="x" type="range" min="50" max="500" value="250" step="10">
+                <output for="x" name="out_x">250</output> &nbsp;
+                <label for="y">height</label><input name="y" id="y" type="range" min="50" max="500" value="250" step="10">
+                <output for="y" name="out_y">250</output>
             </form>
 
         <label for="bg">background</label>
@@ -39,10 +39,22 @@
         </div>
 
     </div>
-
+    <div class="real-settings">
+        <h2>Canvas</h2>
+        <form class="canvas-size" onsubmit="return false" oninput="out_x.value = x1.valueAsNumber; out_y.value = y1.valueAsNumber">
+            <label for="x1">width</label><input name="x1" id="x1" type="range" min="50" max="500" value="250" step="10">
+            <output for="x1" name="out_x">250</output> <br>
+            <label for="y1">height</label><input name="y1" id="y1" type="range" min="50" max="500" value="250" step="10">
+            <output for="y1" name="out_y">250</output>
+        </form>
+        <button class="setting-btn" onclick="core.regenerate('bg')">Regenerate BG</button>
+        <button class="setting-btn" onclick="core.regenerate('body')">Regenerate User</button>
+        <button class="btn" onclick="core.save()">Save!</button>
+    </div>
     <script type="text/javascript" src="js/classes/Core.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/classes/Palette.js"></script>
     <script type="text/javascript" src="js/classes/Primitives.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
+
 </body>
 </html>
