@@ -41,7 +41,7 @@ class Primitives {
                 break;
         }
     }
-    static body(color){
+    static body(color, offset){
 
         const userW = 309;
         const userH = 258;
@@ -75,7 +75,7 @@ class Primitives {
                 break;
         }
             core.ctx.scale(scale_coefficient, scale_coefficient)
-            core.ctx.translate((core.cvs.width / scale_coefficient * 0.5 - (userW/2)),(core.cvs.height / scale_coefficient * 0.5 - (userH/2)));
+            core.ctx.translate((core.cvs.width / scale_coefficient * 0.5 - (userW/2)) + parseInt(offset[0]),(core.cvs.height / scale_coefficient * 0.5 - (userH/2)) + parseInt(offset[1]));
             core.ctx.fill(user);
 
     }

@@ -14,20 +14,27 @@ class Core {
         this.cvs.height = this.h;
         this.ctx = this.cvs.getContext('2d');
         document.body.appendChild(this.cvs);
-        delete this.w && delete this.h;
     }
     generate(){
         Primitives.bg(this.data.background);
-        Primitives.body(this.data.body);
+        Primitives.body(this.data.body, this.data.offset);
+    }
+    reset(){
+        core.data.offset = [0,0];
+        core.cvs.width = core.w;
+        core.cvs.height = core.h;
+        this.generate();
     }
     regenerate(type){
         switch (type) {
             case 'bg':
                 delete Primitives.bg_color;
+                core.cvs.width = core.cvs.width;
                 core.generate();
                 break;
             case 'body':
                 delete Primitives.body_color;
+                core.cvs.width = core.cvs.width;
                 core.generate();
                 break;
         }

@@ -9,6 +9,7 @@ html{
 body{
     background-color: lightslategray;
 }
+
 canvas{
     position: absolute;
     top: 50%;
@@ -62,4 +63,10 @@ input{
 }
 .show{
     display: block;
+}
+.green:hover{
+    background-color: green;
+}
+.red:hover{
+    background-color: red;
 }
