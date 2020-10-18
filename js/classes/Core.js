@@ -1,5 +1,6 @@
 'use strict';
 class Core {
+    w;h;data;cvs;ctx;
     init(w,h,properties = []) {
         this.w = w;
         this.h = h;

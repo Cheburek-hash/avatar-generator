@@ -1,9 +1,7 @@
-
-localStorage.clear();
+'use strict';
 const core = new Core();
-let data = {};
+const data = {};
 const labels = document.getElementsByTagName('label');
-
 
 document.querySelector('button').addEventListener('click', () => {
 
@@ -30,13 +28,10 @@ document.querySelector('button').addEventListener('click', () => {
                element.innerText = (element.name === 'out_x') ? core.w : core.h;
                break;
         }
-
-
-    })
+    });
     core.createField();
     core.generate()
 }, false)
-
 
 document.querySelector('.canvas-size').addEventListener('input', e => {
     if (e.target.id === "x1"){
@@ -49,17 +44,10 @@ document.querySelector('.canvas-size').addEventListener('input', e => {
 }, false);
 document.querySelector('.user-size').addEventListener('input', e => {
     if (e.target.id === "x2"){
-        core.cvs.width = core.cvs.width;
         core.data.offset[0] =  e.target.value;
         core.generate()
     } else{
-        core.cvs.width = core.cvs.width;
         core.data.offset[1] =  e.target.value;
         core.generate()
     }
 }, false);
-
-
-
-
-
