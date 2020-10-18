@@ -44,9 +44,11 @@ document.querySelector('.canvas-size').addEventListener('input', e => {
 }, false);
 document.querySelector('.user-size').addEventListener('input', e => {
     if (e.target.id === "x2"){
+        core.cvs.width = core.cvs.width;
         core.data.offset[0] =  e.target.value;
         core.generate()
     } else{
+        core.cvs.width = core.cvs.width;
         core.data.offset[1] =  e.target.value;
         core.generate()
     }
