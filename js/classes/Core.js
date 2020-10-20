@@ -24,6 +24,7 @@ class Core {
         core.data.offset = [0,0];
         core.cvs.width = core.w;
         core.cvs.height = core.h;
+        Primitives.scale_coefficient = 1.5;
         this.generate();
     }
     regenerate(type){
