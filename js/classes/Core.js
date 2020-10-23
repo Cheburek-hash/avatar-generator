@@ -27,15 +27,23 @@ class Core {
         Primitives.scale_coefficient = 1.5;
         this.generate();
     }
+    gradientPrepare(){
+        return [
+            [this.random(0,256), this.random(0,256),this.random(0,256)],
+            [this.random(0,256), this.random(0,256),this.random(0,256)],
+            [this.random(0,256), this.random(0,256),this.random(0,256)]
+        ]
+    }
+
     regenerate(type){
         switch (type) {
             case 'bg':
-                delete Primitives.bg_color;
+                localStorage.removeItem('bg_color');
                 core.cvs.width = core.cvs.width;
                 core.generate();
                 break;
             case 'body':
-                delete Primitives.body_color;
+                localStorage.removeItem('body_color');
                 core.cvs.width = core.cvs.width;
                 core.generate();
                 break;
