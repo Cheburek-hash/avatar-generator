@@ -21,7 +21,6 @@
 
         <label for="bg">background</label>
         <select id="bg" name="bg">
-            <option value="transparent" >Transparent</option>
             <option value="white">White</option>
             <option value="black">Black</option>
             <option value="random">Random Color</option>
@@ -48,6 +47,12 @@
         <output for="y1" name="out_y"></output>
     </form>
     <button class="setting-btn" onclick="core.regenerate('bg')">Regenerate BG</button>
+    <select id="background" name="bg">
+        <option value="white">White</option>
+        <option value="black">Black</option>
+        <option value="random">Random Color</option>
+        <option value="random_gradient" selected>Random Gradient</option>
+    </select>
 
     <h2>User</h2>
 
@@ -65,7 +70,12 @@
     <button class="setting-btn" onclick="core.regenerate('body')">Regenerate User</button>
     <button class="btn green" onclick="core.save()">Save!</button>
     <button class="red" onclick="core.reset()">Reset</button>
-
+    <select id="_body" name="body">
+        <option value="white">White</option>
+        <option value="black">Black</option>
+        <option value="random" selected>Random Color</option>
+        <option value="random_gradient">Random Gradient</option>
+    </select>
 </div>
 <script type="text/javascript" src="js/classes/Core.js"></script>
 <script type="text/javascript" src="js/main.js"></script>

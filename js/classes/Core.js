@@ -18,7 +18,7 @@ class Core {
     }
     generate(){
         Primitives.bg(this.data.background);
-        Primitives.body(this.data.body, this.data.offset);
+        Primitives.body(this.data.offset);
     }
     reset(){
         core.data.offset = [0,0];
@@ -29,12 +29,14 @@ class Core {
     }
     gradientPrepare(){
         return [
-            [this.random(0,256), this.random(0,256),this.random(0,256)],
-            [this.random(0,256), this.random(0,256),this.random(0,256)],
-            [this.random(0,256), this.random(0,256),this.random(0,256)]
+            [this.random(0,256), this.random(0,256), this.random(0,256)],
+            [this.random(0,256), this.random(0,256), this.random(0,256)],
+            [this.random(0,256), this.random(0,256), this.random(0,256)]
         ]
     }
-
+    on(selector, type, callback){
+        document.querySelector(selector).addEventListener(type, callback, false);
+    }
     regenerate(type){
         switch (type) {
             case 'bg':
