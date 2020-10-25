@@ -16,7 +16,7 @@ class Core {
         this.ctx = this.cvs.getContext('2d');
         document.body.appendChild(this.cvs);
     }
-    loadData(fields = ['width', 'height', 'offset', 'body', 'background', ]){
+    loadData(fields = ['width', 'height', 'scale', 'offset', 'body', 'background', ]){
         const default_properties = {
             offset: [0, 0],
             body: 'random',
@@ -34,8 +34,9 @@ class Core {
                     let value;
                     try{
                         value = JSON.parse(localStorage.getItem(property));
-                    } catch (e) { value = localStorage.getItem(property)}
-
+                    } catch (e) {
+                        value = localStorage.getItem(property);
+                    }
                     data[property] = (value === true) ? value : default_properties[property];
                 });
         return data;
