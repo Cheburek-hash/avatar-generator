@@ -1,9 +1,8 @@
 'use strict';
 
 class Primitives {
-    static scale_coefficient = 1.5;
-    static bg(type){
-        switch (type) {
+    static bg(){
+        switch (core.data.background) {
             case 'black':
                 core.ctx.fillStyle = Palette.black();
                 break;
@@ -11,19 +10,19 @@ class Primitives {
                 core.ctx.fillStyle = Palette.white();
                 break;
             case 'random':
-                if (!localStorage.getItem('bg_color')){
-                    localStorage.setItem('bg_color', Palette.random());
-                    core.ctx.fillStyle = localStorage.getItem('bg_color');
+                if (!localStorage.getItem('background')){
+                    localStorage.setItem('background', Palette.random());
+                    core.ctx.fillStyle = localStorage.getItem('background');
                 }else{
-                    core.ctx.fillStyle = localStorage.getItem('bg_color');
+                    core.ctx.fillStyle = localStorage.getItem('background');
                 }
                 break;
             case 'random_gradient':
-                if (!JSON.parse(localStorage.getItem('bg_color'))){
-                    localStorage.setItem('bg_color', JSON.stringify(core.gradientPrepare()));
-                    core.ctx.fillStyle = Palette.randomGradient(JSON.parse(localStorage.getItem('bg_color')));
+                if (!JSON.parse(localStorage.getItem('background'))){
+                    localStorage.setItem('background', JSON.stringify(core.gradientPrepare()));
+                    core.ctx.fillStyle = Palette.randomGradient(JSON.parse(localStorage.getItem('background')));
                 }else{
-                    core.ctx.fillStyle = Palette.randomGradient(JSON.parse(localStorage.getItem('bg_color')));
+                    core.ctx.fillStyle = Palette.randomGradient(JSON.parse(localStorage.getItem('background')));
             }
                 break;
             default:
@@ -32,7 +31,7 @@ class Primitives {
         }
         core.ctx.fillRect(0,0,core.cvs.width, core.cvs.height);
     }
-    static body(offset){
+    static body(){
 
         this.userW = 309;
         this.userH = 258;
@@ -46,30 +45,30 @@ class Primitives {
                 core.ctx.fillStyle = Palette.white()
                 break;
             case 'random':
-                if (!localStorage.getItem('body_color')) {
-                    localStorage.setItem('body_color', Palette.random());
-                    core.ctx.fillStyle = localStorage.getItem('body_color');
+                if (!localStorage.getItem('body')) {
+                    localStorage.setItem('body', Palette.random());
+                    core.ctx.fillStyle = localStorage.getItem('body');
                 }
                     else{
-                    core.ctx.fillStyle = localStorage.getItem('body_color');
+                    core.ctx.fillStyle = localStorage.getItem('body');
                     }
 
                 break;
             case 'random_gradient':
-                if (!JSON.parse(localStorage.getItem('body_color'))){
+                if (!JSON.parse(localStorage.getItem('body'))){
 
-                    localStorage.setItem('body_color', JSON.stringify(core.gradientPrepare()));
-                    core.ctx.fillStyle = Palette.randomGradient(JSON.parse(localStorage.getItem('body_color')));
+                    localStorage.setItem('body', JSON.stringify(core.gradientPrepare()));
+                    core.ctx.fillStyle = Palette.randomGradient(JSON.parse(localStorage.getItem('body')));
                 }else {
-                    core.ctx.fillStyle = Palette.randomGradient(JSON.parse(localStorage.getItem('body_color')));
+                    core.ctx.fillStyle = Palette.randomGradient(JSON.parse(localStorage.getItem('body')));
                 }
                 break;
             default:
                 core.ctx.fillStyle = Palette.black();
                 break;
         }
-            core.ctx.scale(this.scale_coefficient, this.scale_coefficient);
-            core.ctx.translate((core.cvs.width / this.scale_coefficient * 0.5 - (this.userW/2)) + parseInt(offset[0]),(core.cvs.height / this.scale_coefficient * 0.5 - (this.userH/2)) + parseInt(offset[1]));
+            core.ctx.scale(core.data.scale, core.data.scale);
+            core.ctx.translate((core.cvs.width / core.data.scale * 0.5 - (this.userW/2)) + parseInt(core.data.offset[0]),(core.cvs.height / core.data.scale * 0.5 - (this.userH/2)) + parseInt(core.data.offset[1]));
             core.ctx.fill(user);
     }
 }
