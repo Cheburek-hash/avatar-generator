@@ -19,8 +19,8 @@ class Core {
     loadData(fields = ['width', 'height', 'scale', 'offset', 'body', 'background', ]){
         const default_properties = {
             offset: [0, 0],
-            body: 'random',
-            background: 'random_gradient',
+            body: {type:'random', data: null},
+            background: {type:'random_gradient', data: null},
             height: 250,
             width: 250,
             scale: 1.5,
@@ -31,20 +31,16 @@ class Core {
 
             fields.forEach(
                 property => {
-                    let value;
-                    try{
-                        value = JSON.parse(localStorage.getItem(property));
-                    } catch (e) {
-                        value = localStorage.getItem(property);
-                    }
-                    data[property] = (value === true) ? value : default_properties[property];
+                  let value = localStorage.getItem(property);
+
+                   data[property] = (value !== null) ? JSON.parse(value) : default_properties[property];
                 });
         return data;
     }
     generate(){
         core.cvs.width = core.cvs.width;
-        Primitives.bg(this.data.background);
-        Primitives.body(this.data.offset);
+        Primitives.bg();
+        Primitives.body();
     }
     reset(){
         this.data.offset = [0,0];
@@ -66,25 +62,22 @@ class Core {
     regenerate(type){
         switch (type) {
             case 'background':
-                localStorage.removeItem('background');
-                core.cvs.width = core.cvs.width;
+                core.data.background.data = null;
                 core.generate();
                 break;
             case 'body':
-                localStorage.removeItem('body');
-                core.cvs.width = core.cvs.width;
+                core.data.body.data = null;
                 core.generate();
                 break;
         }
     }
     save(){
-        localStorage.setItem('offset', JSON.stringify(this.data['offset']));
-        localStorage.setItem('width', this.cvs.width);
-        localStorage.setItem('height', this.cvs.height);
-        localStorage.setItem('height', this.cvs.height);
-        localStorage.setItem('scale', this.data.scale);
-
-        }
+       for (let property in this.data){
+            localStorage.setItem(property, JSON.stringify(this.data[property]))
+       }
+        localStorage.setItem('width', core.cvs.width);
+        localStorage.setItem('height', core.cvs.height);
+    }
     saveFile() {
         const link = document.createElement('a');
         link.setAttribute('href', this.cvs.toDataURL('image/png'));

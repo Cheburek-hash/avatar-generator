@@ -28,13 +28,14 @@ core.on('.user-size', 'input', e => {
         core.generate()
 });
 core.on('#background', 'change', e => {
-   localStorage.removeItem('background');
-   core.data.background = e.target.value;
+
+   core.data.background.type = e.target.value;
+   core.data.background.data = null;
    core.generate();
 
 });
 core.on('#_body', 'change', e => {
-   localStorage.removeItem('body');
-   core.data.body = e.target.value;
+    core.data.body.type = e.target.value;
+    core.data.body.data = null;
    core.generate();
 });
