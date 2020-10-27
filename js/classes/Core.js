@@ -42,13 +42,6 @@ class Core {
         Primitives.bg();
         Primitives.body();
     }
-    reset(){
-        this.data.offset = [0,0];
-        this.cvs.width = core.w;
-        this.cvs.height = core.h;
-        this.data.scale = 1.5;
-        this.generate();
-    }
     gradientPrepare(){
         return [
             [this.random(0,256), this.random(0,256), this.random(0,256)],
